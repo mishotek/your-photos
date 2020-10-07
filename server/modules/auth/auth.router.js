@@ -3,6 +3,7 @@ const authService = require('./auth.service');
 
 const ROUTES = {
     register: '/auth/register',
+    login: '/auth/login',
 };
 
 module.exports = () => {
@@ -10,6 +11,9 @@ module.exports = () => {
 
     authRouter.route(ROUTES.register)
         .post(authService.register);
+
+    authRouter.route(ROUTES.login)
+        .post(authService.login);
 
     return authRouter;
 };
