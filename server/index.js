@@ -1,9 +1,18 @@
-const express = require('express')
-const app = express()
-const port = 3000
+// Setting up environment variables
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 
-app.use(express.static('public'))
+const express = require('express');
+const app = express();
+const path = require('path');
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`)
-})
+const PORT = process.env.PORT || 3000;
+const BASE_PATH =  path.resolve(__dirname, '..');
+
+app.use('/', express.static(`${BASE_PATH}/public`));
+
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
+
