@@ -11,3 +11,4 @@ File server and web interface that could run on raspberry pi on your home networ
 - [ ] Fullscreen photo gallery
 - [ ] Album page
 - [ ] Shared album page
+- [ ] Trun website into PWA (maybe)
