@@ -1,0 +1,30 @@
+{
+  "name": "your-photos",
+  "version": "1.0.0",
+  "description": "Google photos, but on your own disk",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mishotek/your-photos.git"
+  },
+  "author": "Mikheil Tektumanidze",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mishotek/your-photos/issues"
+  },
+  "homepage": "https://github.com/mishotek/your-photos#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.8"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.4"
+  }
+}
