@@ -12,7 +12,7 @@ const UserModel = require('../../db-models/user.model');
  * @route POST /auth/register
  * @access Public
  */
-module.exports.register = async (req, res) => {
+exports.register = async (req, res) => {
     try {
         const {username, password} = req.body;
 
@@ -38,7 +38,7 @@ module.exports.register = async (req, res) => {
  * @route POST /auth/login
  * @access Public
  */
-module.exports.login = async (req, res) => {
+exports.login = async (req, res) => {
     try {
         const {username, password} = req.body;
         const user = await _authenticate(username, password);
@@ -60,6 +60,14 @@ module.exports.login = async (req, res) => {
         logger.logError(e);
         send(res, httpCodes.InternalServerError);
     }
+};
+
+exports.isAuthorizedMiddleware = async (req, res, next) => {
+    const isAuthenticated = await _isAuthenticated(req.header('Access-Token'));
+    if (isAuthenticated) {
+        return next();
+    }
+    send(res, httpCodes.Forbidden, null, {message: 'Please log in'});
 };
 
 const _validateCredentials = async (username, password) => {
@@ -99,6 +107,27 @@ const _authenticate = async (username, password) => {
     }
 
     return null;
+};
+
+const _isAuthenticated = async (accessToken) => {
+    return !!(await _getUserByAccessToken(accessToken));
+};
+
+const _getUserByAccessToken = async (accessToken) => {
+    if (!accessToken) {
+        return null;
+    }
+
+    try {
+        const {_id} = await jwt.verify(
+            accessToken,
+            process.env.JWT_ACCESS_TOKEN_SECRET,
+        );
+        return await UserModel.findById(_id);
+    } catch (e) {
+        logger.logError(e);
+        return null;
+    }
 };
 
 const _passwordValid = (password) => {
