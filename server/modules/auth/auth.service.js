@@ -63,8 +63,9 @@ exports.login = async (req, res) => {
 };
 
 exports.isAuthorizedMiddleware = async (req, res, next) => {
-    const isAuthenticated = await _isAuthenticated(req.header('Access-Token'));
-    if (isAuthenticated) {
+    const user = await _getUserByAccessToken(req.header('Access-Token'));
+    if (user) {
+        req.user = user;
         return next();
     }
     send(res, httpCodes.Forbidden, null, {message: 'Please log in'});
@@ -107,10 +108,6 @@ const _authenticate = async (username, password) => {
     }
 
     return null;
-};
-
-const _isAuthenticated = async (accessToken) => {
-    return !!(await _getUserByAccessToken(accessToken));
 };
 
 const _getUserByAccessToken = async (accessToken) => {

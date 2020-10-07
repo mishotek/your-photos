@@ -13,3 +13,7 @@ module.exports.extractPublicUserData = (user) => {
         username: user.username,
     };
 };
+
+module.exports.extractFileExtension = (fileName) => {
+    return fileName.match(/\.[0-9a-z]+$/i)[0];
+};
