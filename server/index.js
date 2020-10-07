@@ -7,6 +7,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const router = require('./app.router');
 
 const PORT = process.env.PORT || 3000;
@@ -18,6 +19,8 @@ mongoose.connect(MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 app.use('/', express.static(`${BASE_PATH}/public`));
 
 router(app);

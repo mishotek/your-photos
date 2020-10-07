@@ -6,3 +6,10 @@ module.exports.getRequestLanguage = (req) => {
     const languageSupported = SUPPORTED_LANGUAGES.includes(contentLanguage);
     return languageSupported ? contentLanguage : DEFAULT_LANGUAGE;
 };
+
+module.exports.extractPublicUserData = (user) => {
+    return {
+        id: user._id,
+        username: user.username,
+    };
+};
