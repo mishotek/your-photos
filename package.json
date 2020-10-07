@@ -4,7 +4,7 @@
   "description": "Google photos, but on your own disk",
   "main": "server/index.js",
   "scripts": {
-    "dev": "node server/index.js",
+    "dev": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "eslint": "^7.10.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.4"
   }
 }
