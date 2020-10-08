@@ -7,4 +7,5 @@ module.exports = (app) => {
     app.use(API_PREFIX, require('./modules/translation/translation.router')());
     app.use(API_PREFIX, require('./modules/auth/auth.router')());
     app.use(API_PREFIX, require('./modules/photo-upload/photo-upload.router')());
+    app.use(API_PREFIX, require('./modules/photo-uploaded/photo-uploaded.router')());
 };

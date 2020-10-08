@@ -1,6 +1,6 @@
-const logger = require('../../utils/logger');
+const Logger = require('../../utils/logger');
 const httpCodes = require('../../configs/enums/http-codes');
-const utils = require('../../utils/utils');
+const Utils = require('../../utils/utils');
 const send = require('../../utils/send');
 
 const _getDictionary = (language) => {
@@ -15,10 +15,10 @@ const _getDictionary = (language) => {
  */
 module.exports.getDictionary = async (req, res) => {
     try {
-        const language = utils.getRequestLanguage(req);
+        const language = Utils.getRequestLanguage(req);
         send(res, httpCodes.OK, _getDictionary(language));
     } catch (e) {
-        logger.logError(e);
+        Logger.logError(e);
         send(res, httpCodes.InternalServerError);
     }
 };

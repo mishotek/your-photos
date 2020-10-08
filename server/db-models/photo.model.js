@@ -14,6 +14,18 @@ const PhotoModelSchema = new Schema({
         type: [String],
         required: [true, 'Please add accessibleTo'],
     },
+    fileName: {
+        type: String,
+        required: [true, 'Please add fileName'],
+    },
+    name: {
+        type: String,
+        required: [true, 'Please add name'],
+    },
+    url: {
+        type: String,
+        required: [true, 'Please add url'],
+    },
     createdAt: {
         type: Date,
         default: Date.now,

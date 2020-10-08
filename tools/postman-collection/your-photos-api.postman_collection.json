@@ -105,6 +105,87 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "photos",
+			"item": [
+				{
+					"name": "upload-photo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjdkYjRjZDgxNjE4ODFlZGM4ZDgyNWUiLCJpYXQiOjE2MDIwNzg3NjV9.ksINZv1pmVOB1-fjx4-Y_RajDGwrrZ4XqWz8yBSRl44",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photos",
+									"type": "file",
+									"src": [
+										"/C:/Users/mishotek/Desktop/nologo.jpg",
+										"/C:/Users/mishotek/Desktop/norbert-kowalczyk-PQHOmT-vkgA-unsplash.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/photo/upload?=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"photo",
+								"upload"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploaded-photos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjdkYjRjZDgxNjE4ODFlZGM4ZDgyNWUiLCJpYXQiOjE2MDIwNzg3NjV9.ksINZv1pmVOB1-fjx4-Y_RajDGwrrZ4XqWz8yBSRl44",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/photo/uploaded-photos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"photo",
+								"uploaded-photos"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
