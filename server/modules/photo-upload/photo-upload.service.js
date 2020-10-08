@@ -3,6 +3,7 @@ const Logger = require('../../utils/logger');
 const Utils = require('../../utils/utils');
 const httpCodes = require('../../configs/enums/http-codes');
 const PhotoModel = require('../../db-models/photo.model');
+const {v4: uuidv4} = require('uuid');
 
 exports.upload = async (req, res) => {
     try {
@@ -25,7 +26,7 @@ exports.upload = async (req, res) => {
 
 const _storePhoto = async (user, photo) => {
     // eslint-disable-next-line max-len
-    const storedFileName = `${photo.md5}${Utils.extractFileExtension(photo.name)}`;
+    const storedFileName = `${uuidv4()}-${photo.md5}${Utils.extractFileExtension(photo.name)}`;
     await photo.mv(`./public/photos/${storedFileName}`);
     const photoModel = new PhotoModel({
         ownerId: user._id,

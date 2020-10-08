@@ -13,6 +13,7 @@ exports.extractFileExtension = (fileName) => {
 
 exports.extractPublicPhotoData = (photo) => {
     return {
+        id: photo._id,
         fileName: photo.fileName,
         name: photo.name,
         url: photo.url,
