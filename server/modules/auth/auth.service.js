@@ -1,10 +1,9 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const logger = require('../../utils/logger');
+const Logger = require('../../utils/logger');
 const httpCodes = require('../../configs/enums/http-codes');
 const authCodes = require('../../configs/enums/auth-codes');
 const send = require('../../utils/send');
-const utils = require('../../utils/utils');
 const UserModel = require('../../db-models/user.model');
 
 /**
@@ -26,9 +25,9 @@ exports.register = async (req, res) => {
         const user = new UserModel({username, password: hashedPassword});
         await user.save();
 
-        send(res, httpCodes.OK, utils.extractPublicUserData(user));
+        send(res, httpCodes.OK, _extractPublicUserData(user));
     } catch (e) {
-        logger.logError(e);
+        Logger.logError(e);
         send(res, httpCodes.InternalServerError);
     }
 };
@@ -54,17 +53,18 @@ exports.login = async (req, res) => {
         );
         send(res, httpCodes.OK, {
             accessToken,
-            user: utils.extractPublicUserData(user),
+            user: _extractPublicUserData(user),
         });
     } catch (e) {
-        logger.logError(e);
+        Logger.logError(e);
         send(res, httpCodes.InternalServerError);
     }
 };
 
 exports.isAuthorizedMiddleware = async (req, res, next) => {
-    const isAuthenticated = await _isAuthenticated(req.header('Access-Token'));
-    if (isAuthenticated) {
+    const user = await _getUserByAccessToken(req.header('Access-Token'));
+    if (user) {
+        req.user = user;
         return next();
     }
     send(res, httpCodes.Forbidden, null, {message: 'Please log in'});
@@ -109,10 +109,6 @@ const _authenticate = async (username, password) => {
     return null;
 };
 
-const _isAuthenticated = async (accessToken) => {
-    return !!(await _getUserByAccessToken(accessToken));
-};
-
 const _getUserByAccessToken = async (accessToken) => {
     if (!accessToken) {
         return null;
@@ -125,7 +121,7 @@ const _getUserByAccessToken = async (accessToken) => {
         );
         return await UserModel.findById(_id);
     } catch (e) {
-        logger.logError(e);
+        Logger.logError(e);
         return null;
     }
 };
@@ -148,3 +144,9 @@ const _getUserByUsername = async (username) => {
     return await UserModel.findOne({username}).exec();
 };
 
+const _extractPublicUserData = (user) => {
+    return {
+        id: user._id,
+        username: user.username,
+    };
+};
