@@ -16,5 +16,6 @@ module.exports = {
         'new-cap': 0,
         'valid-jsdoc': 0,
         'max-len': ['error', {'code': 100}],
+        'require-jsdoc': 0,
     },
 };
