@@ -1,0 +1,68 @@
+import {LitElement, html, css} from 'lit-element';
+
+export class YpFont extends LitElement {
+    static get is() {
+        return 'yp-font';
+    }
+
+    static get styles() {
+        // language=css
+        return css`
+            :host {
+                display: inline-block;
+            }
+            
+            :host([type=title-1]) {
+                font-size: var(--font-size-title-1);
+            }
+
+            :host([type=title-2]) {
+                font-size: var(--font-size-title-2);
+            }
+
+            :host([type=title-3]) {
+                font-size: var(--font-size-title-3);
+            }
+
+            :host([type=large]) {
+                font-size: var(--font-size-large);
+            }
+
+            :host([type=regular]) {
+                font-size: var(--font-size-regular);
+            }
+
+            :host([type=small]) {
+                font-size: var(--font-size-small);
+            }
+
+            :host([type=micro]) {
+                font-size: var(--font-size-micro);
+            }
+        `;
+    }
+
+    render() {
+        // language=html
+        return html`<slot></slot>`;
+    }
+
+    static get properties() {
+        return {
+            // Type can be:
+            // title-1
+            // title-2
+            // title-3
+            // large
+            // regular
+            // small
+            // micro
+            type: {
+                type: String,
+                reflect: true,
+            },
+        };
+    }
+}
+
+customElements.define(YpFont.is, YpFont);

@@ -1,0 +1,70 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+.color {
+    --color-primary: #fafafa;
+    --color-primary-light: #ffffff;
+    --color-primary-dark: #c7c7c7;
+
+    --color-secondary: #212121;
+    --color-secondary-light: #484848;
+    --color-secondary-dark: #000000;
+
+    --color-text-primary: #000000;
+    --color-text-primary-light: #484848;
+
+    --color-black-80: rgba(0, 0, 0, 1);
+    --color-black-70: rgba(0, 0, 0, 0.9);
+    --color-black-60: rgba(0, 0, 0, 0.8);
+    --color-black-50: rgba(0, 0, 0, 0.7);
+    --color-black-40: rgba(0, 0, 0, 0.5);
+    --color-black-30: rgba(0, 0, 0, 0.3);
+    --color-black-20: rgba(0, 0, 0, 0.2);
+    --color-black-10: rgba(0, 0, 0, 0.1);
+    --color-black-0: rgba(0, 0, 0, 0);
+
+    --color-white-80: rgba(255, 255, 255, 1);
+    --color-white-70: rgba(255, 255, 255, 0.9);
+    --color-white-60: rgba(255, 255, 255, 0.8);
+    --color-white-50: rgba(255, 255, 255, 0.7);
+    --color-white-40: rgba(255, 255, 255, 0.5);
+    --color-white-30: rgba(255, 255, 255, 0.3);
+    --color-white-20: rgba(255, 255, 255, 0.2);
+    --color-white-10: rgba(255, 255, 255, 0.1);
+    --color-white-0: rgba(255, 255, 255, 0);
+}
+
+.spacing {
+    --space-micro: 4px;
+    --space-tiny: 8px;
+    --space-small: 16px;
+    --space-base: 24px;
+    --space-large: 48px;
+    --space-x-large: 64px;
+}
+
+.sizing {
+    --sizing-input-height: 56px;
+}
+
+.radius {
+    --radius-micro: 2px;
+    --radius-small: 4px;
+    --radius-base: 8px;
+    --radius-large: 12px;
+    --radius-x-large: 24px;
+}
+
+.font-sizing {
+    --font-size-title-1: 44px;
+    --font-size-title-2: 32px;
+    --font-size-title-3: 24px;
+    --font-size-large: 18px;
+    --font-size-regular: 16px;
+    --font-size-small: 14px;
+    --font-size-micro: 8px;
+}
