@@ -12,8 +12,13 @@ export class YpTextField extends LitElement {
         return css`
             :host {
                 display: flex;
-                align-items: center;
+                flex-direction: column;
                 position: relative;
+            }
+            
+            .input-wrapper {
+                display: flex;
+                align-items: center;
             }
             
             .inner-input {
@@ -23,8 +28,9 @@ export class YpTextField extends LitElement {
                 border-radius: var(--radius-small);
                 width: 100%;
                 background-color: var(--color-white-80);
-                padding: 0 var(--space-tiny);
+                padding: 0 var(--space-small);
                 font-size: var(--font-size-regular);
+                font-family: 'Lato', sans-serif;
                 color: var(--color-text-primary-light);
                 
                 will-change: border;
@@ -40,22 +46,55 @@ export class YpTextField extends LitElement {
                 border: solid 1px var(--color-secondary);
             }
             
-            .placeholder {
+            .label {
                 position: absolute;
                 left: var(--space-tiny);
                 font-size: var(--font-size-regular);
                 color: var(--color-text-primary-light);
                 background-color: var(--color-white-80);
-                padding: 0 var(--space-micro);
-                
+                padding: 0 var(--space-tiny);
+
+                font-family: 'Lato', sans-serif;
                 will-change: font-size, color, transform;
                 transition: transform 0.2s, font-size 0.2s, color 0.2s;
             }
 
-            :host([active]) .placeholder {
+            .message {
+                padding: var(--space-micro) 0;
+                height: var(--space-base);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            
+            :host([active]) .label {
                 transform: translateY(-26px);
                 color: var(--color-secondary);
                 font-size: var(--font-size-small);
+            }
+            
+            :host([error]) .inner-input {
+                border: solid 1px var(--color-error);
+            }
+
+            :host([error]) .message {
+                color: var(--color-error);
+            }
+            
+            :host([error][active]) .label {
+                color: var(--color-error);
+            }
+
+            :host([success]) .inner-input {
+                border: solid 1px var(--color-success);
+            }
+
+            :host([success]) .message {
+                color: var(--color-success);
+            }
+            
+            :host([success][active]) .label {
+                color: var(--color-success);
             }
         `;
     }
@@ -63,13 +102,18 @@ export class YpTextField extends LitElement {
     render() {
         // language=html
         return html`
-            <label class="placeholder" for="inner-input">${this.placeholder}</label>
+            <div class="input-wrapper">
+                <label class="label" for="inner-input">${this.label}</label>
 
-            <input id="inner-input"
-                   class="inner-input"
-                   type="${ifDefined(this.type)}"
-                   @focus="${this._onFocus}"
-                   @blur="${this._onBlur}">
+                <input id="inner-input"
+                       class="inner-input"
+                       type="${ifDefined(this.type)}"
+                       @change="${this._onChange}"
+                       @focus="${this._onFocus}"
+                       @blur="${this._onBlur}">
+            </div>
+            
+            <yp-font class="message" type="micro">${this.message}</yp-font>
         `;
     }
 
@@ -80,7 +124,11 @@ export class YpTextField extends LitElement {
                 type: String,
                 reflect: true,
             },
-            placeholder: {
+            label: {
+                type: String,
+                reflect: true,
+            },
+            message: {
                 type: String,
                 reflect: true,
             },
@@ -90,6 +138,14 @@ export class YpTextField extends LitElement {
             },
             value: {
                 type: String,
+                reflect: true,
+            },
+            error: {
+                type: Boolean,
+                reflect: true,
+            },
+            success: {
+                type: Boolean,
                 reflect: true,
             },
         };
@@ -107,6 +163,16 @@ export class YpTextField extends LitElement {
     _onBlur() {
         this.active = !!this.value;
         this.dispatchEvent(new CustomEvent('blur'));
+    }
+
+    _onChange(event) {
+        this.value = event.target.value;
+        console.log(event);
+        this.dispatchEvent(new CustomEvent('onchange', {
+            detail: {
+                value: this.value,
+            },
+        }));
     }
 }
 

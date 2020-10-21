@@ -10,6 +10,7 @@ export class YpFont extends LitElement {
         return css`
             :host {
                 display: inline-block;
+                font-family: 'Lato', sans-serif;
             }
             
             :host([type=title-1]) {

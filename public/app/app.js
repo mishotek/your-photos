@@ -9,8 +9,22 @@ export class YpApp extends LitElement {
     render() {
         // language=html
         return html`
-            <yp-text-field style="margin: 24px; width: 300px;"
-                           placeholder="Email"></yp-text-field>
+            <yp-text-field style="margin: 24px 24px 0 24px; width: 300px;"
+                           label="Email"
+                           message="Password is incorrect. Try again or click again or click 'reset password'. Password is incorrect. Try again or click 'reset password'">
+            </yp-text-field>
+
+            <yp-text-field style="margin: 0 24px; width: 300px;"
+                           error
+                           label="Email"
+                           message="Password is incorrect. Try again or click again or click 'reset password'. Password is incorrect. Try again or click 'reset password'">
+            </yp-text-field>
+
+            <yp-text-field style="margin: 0 24px; width: 300px;"
+                           success
+                           label="Email"
+                           message="Password is incorrect. Try again or click again or click 'reset password'. Password is incorrect. Try again or click 'reset password'">
+            </yp-text-field>
         `;
     }
 }

@@ -36,6 +36,10 @@ body, html {
     --color-white-20: rgba(255, 255, 255, 0.2);
     --color-white-10: rgba(255, 255, 255, 0.1);
     --color-white-0: rgba(255, 255, 255, 0);
+
+    --color-error: #FF5A5E;
+    --color-warning: #FC642C;
+    --color-success: #00A698;
 }
 
 .spacing {
@@ -66,5 +70,5 @@ body, html {
     --font-size-large: 18px;
     --font-size-regular: 16px;
     --font-size-small: 14px;
-    --font-size-micro: 8px;
+    --font-size-micro: 12px;
 }
