@@ -167,7 +167,6 @@ export class YpTextField extends LitElement {
 
     _onChange(event) {
         this.value = event.target.value;
-        console.log(event);
         this.dispatchEvent(new CustomEvent('onchange', {
             detail: {
                 value: this.value,

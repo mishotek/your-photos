@@ -47,6 +47,7 @@ body, html {
     --space-tiny: 8px;
     --space-small: 16px;
     --space-base: 24px;
+    --space-s-large: 32px;
     --space-large: 48px;
     --space-x-large: 64px;
 }

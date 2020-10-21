@@ -1,5 +1,6 @@
 import {LitElement, html} from 'lit-element';
 import './common/form-elements/yp-text-field';
+import './common/form-elements/yp-button';
 
 export class YpApp extends LitElement {
     static get is() {
@@ -25,6 +26,10 @@ export class YpApp extends LitElement {
                            label="Email"
                            message="Password is incorrect. Try again or click again or click 'reset password'. Password is incorrect. Try again or click 'reset password'">
             </yp-text-field>
+            
+            <yp-button size="small" style="margin: 24px">
+                Register
+            </yp-button>
         `;
     }
 }
