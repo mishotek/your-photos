@@ -40,6 +40,14 @@ export class YpFont extends LitElement {
             :host([type=micro]) {
                 font-size: var(--font-size-micro);
             }
+            
+            :host([font-family=Lobster]) {
+                font-family: 'Lobster', cursive;
+            }
+
+            :host([font-family=Staatliches]) {
+                font-family: 'Staatliches', cursive;
+            }
         `;
     }
 
@@ -61,6 +69,12 @@ export class YpFont extends LitElement {
             type: {
                 type: String,
                 reflect: true,
+            },
+            // Lato, Lobster, Staatliches
+            fontFamily: {
+                type: String,
+                reflect: true,
+                attribute: 'font-family',
             },
         };
     }
