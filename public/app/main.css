@@ -25,7 +25,7 @@ body, html {
     --color-black-30: rgba(0, 0, 0, 0.3);
     --color-black-20: rgba(0, 0, 0, 0.2);
     --color-black-10: rgba(0, 0, 0, 0.1);
-    --color-black-0: rgba(0, 0, 0, 0);
+    --color-black-0:  rgba(0, 0, 0, 0);
 
     --color-white-80: rgba(255, 255, 255, 1);
     --color-white-70: rgba(255, 255, 255, 0.9);
@@ -35,20 +35,20 @@ body, html {
     --color-white-30: rgba(255, 255, 255, 0.3);
     --color-white-20: rgba(255, 255, 255, 0.2);
     --color-white-10: rgba(255, 255, 255, 0.1);
-    --color-white-0: rgba(255, 255, 255, 0);
+    --color-white-0:  rgba(255, 255, 255, 0);
 
-    --color-error: #FF5A5E;
+    --color-error:   #FF5A5E;
     --color-warning: #FC642C;
     --color-success: #00A698;
 }
 
 .spacing {
-    --space-micro: 4px;
-    --space-tiny: 8px;
-    --space-small: 16px;
-    --space-base: 24px;
+    --space-micro:   4px;
+    --space-tiny:    8px;
+    --space-small:   16px;
+    --space-base:    24px;
     --space-s-large: 32px;
-    --space-large: 48px;
+    --space-large:   48px;
     --space-x-large: 64px;
 }
 
@@ -57,10 +57,10 @@ body, html {
 }
 
 .radius {
-    --radius-micro: 2px;
-    --radius-small: 4px;
-    --radius-base: 8px;
-    --radius-large: 12px;
+    --radius-micro:   2px;
+    --radius-small:   4px;
+    --radius-base:    8px;
+    --radius-large:   12px;
     --radius-x-large: 24px;
 }
 
@@ -68,8 +68,16 @@ body, html {
     --font-size-title-1: 44px;
     --font-size-title-2: 32px;
     --font-size-title-3: 24px;
-    --font-size-large: 18px;
+    --font-size-large:   18px;
     --font-size-regular: 16px;
-    --font-size-small: 14px;
-    --font-size-micro: 12px;
+    --font-size-small:   14px;
+    --font-size-micro:   12px;
+}
+
+.shadow {
+    --shadow-0:  0 0 0      rgba(0, 0, 0, 0);
+    --shadow-10: 0 1px 2px  rgba(0, 0, 0, 0.4);
+    --shadow-20: 0 2px 4px  rgba(0, 0, 0, 0.4);
+    --shadow-30: 0 4px 8px  rgba(0, 0, 0, 0.4);
+    --shadow-40: 0 8px 16px rgba(0, 0, 0, 0.4);
 }

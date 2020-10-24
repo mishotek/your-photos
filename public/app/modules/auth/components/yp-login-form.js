@@ -18,7 +18,7 @@ export class YpLoginForm extends LitElement {
                 border-radius: var(--radius-base);
                 border: solid 1px var(--color-black-30);
                 background-color: var(--color-white-80);
-                box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+                box-shadow: var(--shadow-40);
             }
             
             .title {
