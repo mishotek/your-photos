@@ -68,6 +68,7 @@ export class YpImageColumn extends LitElement {
             .col-2 > img {
                 width: 100%;
                 margin-bottom: var(--space-tiny);
+                filter: saturate(0) brightness(0.8);
             }
         `;
     }

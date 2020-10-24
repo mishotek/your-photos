@@ -1,6 +1,6 @@
 import {LitElement, css, html} from 'lit-element';
 import './components/yp-image-column';
-import './components/yp-login-form';
+import './components/yp-auth-form';
 
 export class YpAuthPage extends LitElement {
     static get is() {
@@ -29,10 +29,6 @@ export class YpAuthPage extends LitElement {
             
             .login-form {
                 position: absolute;
-                width: 100%;
-                max-width: 500px;
-                padding: var(--space-base);
-                box-sizing: border-box;
             }
 
             /* Extra small devices (phones, 600px and down) */
@@ -86,7 +82,7 @@ export class YpAuthPage extends LitElement {
             </div>
             
             <div class="login-form">
-                <yp-login-form></yp-login-form>
+                <yp-auth-form></yp-auth-form>
             </div>
         `;
     }

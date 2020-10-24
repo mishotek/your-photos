@@ -15,10 +15,6 @@ export class YpLoginForm extends LitElement {
                 display: flex;
                 flex-direction: column;
                 padding: var(--space-large) var(--space-s-large) var(--space-s-large);
-                border-radius: var(--radius-base);
-                border: solid 1px var(--color-black-30);
-                background-color: var(--color-white-80);
-                box-shadow: var(--shadow-40);
             }
             
             .title {
@@ -45,7 +41,11 @@ export class YpLoginForm extends LitElement {
             <yp-text-field label="Password"></yp-text-field>
             
             <div class="actions">
-                <yp-button type="outlined" class="register">Register</yp-button>
+                <yp-button type="outlined"
+                           class="register"
+                           @click="${this._onRegister}">
+                   Register
+               </yp-button>
                 <yp-button type="contained">Sign in</yp-button>
             </div>
         `;
@@ -53,6 +53,10 @@ export class YpLoginForm extends LitElement {
 
     static get properties() {
         return {};
+    }
+
+    _onRegister() {
+        this.dispatchEvent(new CustomEvent('register'));
     }
 }
 
