@@ -1,6 +1,8 @@
 import {LitElement, css, html} from 'lit-element';
 import './components/yp-image-column';
-import './components/yp-auth-form';
+import './yp-login-page';
+// import './yp-register-view';
+import {Router} from '@vaadin/router/dist/vaadin-router';
 
 export class YpAuthPage extends LitElement {
     static get is() {
@@ -15,8 +17,6 @@ export class YpAuthPage extends LitElement {
                 height: 100vh;
                 overflow: hidden;
                 position: relative;
-                align-items: center;
-                justify-content: center;
             }
             
             .grid {
@@ -27,8 +27,16 @@ export class YpAuthPage extends LitElement {
                 padding: 0 var(--space-tiny);
             }
             
-            .login-form {
+            .content {
                 position: absolute;
+                height: 100vh;
+                width: 100vw;
+                display: grid;
+                place-content: center;
+            }
+            
+            .login-form {
+                width: clamp(300px, 50vw, 400px);
             }
 
             /* Extra small devices (phones, 600px and down) */
@@ -81,8 +89,10 @@ export class YpAuthPage extends LitElement {
                 `)}
             </div>
             
-            <div class="login-form">
-                <yp-auth-form></yp-auth-form>
+            <div class="content">
+                <div class="login-form">
+                    <div id="router-outlet"></div>
+                </div>
             </div>
         `;
     }
@@ -91,6 +101,11 @@ export class YpAuthPage extends LitElement {
         super();
         this._columns = [1, 2, 3, 4, 5, 6, 7, 8];
         this._rows = [1, 2, 3, 4, 5, 6, 7, 8];
+    }
+
+    firstUpdated(_changedProperties) {
+        super.firstUpdated(_changedProperties);
+        this._setUpRouter();
     }
 
     static get properties() {
@@ -102,6 +117,17 @@ export class YpAuthPage extends LitElement {
                 type: Array,
             },
         };
+    }
+
+    _setUpRouter() {
+        const outlet = this.shadowRoot.getElementById('router-outlet');
+        const router = new Router(outlet);
+        router.setRoutes([
+            {
+                path: '/auth',
+                component: 'yp-login-page',
+            },
+        ]);
     }
 
     get _imageName() {
