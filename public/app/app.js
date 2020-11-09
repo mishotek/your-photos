@@ -26,6 +26,11 @@ export class YpApp extends LitElement {
                 component: 'yp-auth-page',
                 action: async () => await import('./modules/auth/yp-auth-page'),
             },
+            {
+                path: '/auth/register',
+                component: 'yp-auth-page',
+                action: async () => await import('./modules/auth/yp-auth-page'),
+            },
         ]);
     }
 }

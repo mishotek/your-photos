@@ -1,5 +1,6 @@
 import {LitElement, css, html} from 'lit-element';
 import '../ui-elements/yp-font';
+import {ifDefined} from "lit-html/directives/if-defined";
 
 export class YpButton extends LitElement {
     static get is() {
@@ -10,54 +11,60 @@ export class YpButton extends LitElement {
         // language=css
         return css`
             :host {
+                display: inline-block;   
+            }
+                
+            .btn {
                 display: inline-flex;
                 align-items: center;
                 border-radius: var(--radius-small);
                 cursor: pointer;
                 box-sizing: border-box;
+                text-decoration: none;
+                color: inherit;
                 
                 will-change: color, border, background-color;
                 transition: background-color 0.1s, color 0.1s, border 0.1s;
             }
             
-            :host([size=medium]) {
+            :host([size=medium]) .btn {
                 height: var(--space-large);
             }
 
-            :host([size=small]) {
+            :host([size=small]) .btn {
                 height: var(--space-s-large);
             }
             
-            :host([type=contained]) {
+            :host([type=contained]) .btn {
                 color: var(--color-white-80);
                 background-color: var(--color-secondary);
                 padding: 0 var(--space-base);
             }
 
-            :host([type=contained]):hover {
+            :host([type=contained]):hover .btn {
                 background-color: var(--color-secondary-dark);
             }
 
-            :host([type=outlined]) {
+            :host([type=outlined]) .btn {
                 color: var(--color-secondary);
                 border: solid 1px var(--color-secondary);
                 background-color: transparent;
                 padding: 0 var(--space-base);
             }
 
-            :host([type=outlined]:hover) {
+            :host([type=outlined]:hover) .btn {
                 background-color: var(--color-black-10);
             }
 
-            :host([type=outlined]:active) {
+            :host([type=outlined]:active) .btn {
                 background-color: var(--color-black-20);
             }
 
-            :host([type=text]) {
+            :host([type=text]) .btn {
                 color: var(--color-secondary);
             }
             
-            :host([disabled]) {
+            :host([disabled]) .btn {
                 opacity: 0.3;
                 cursor: default;
             }
@@ -67,9 +74,11 @@ export class YpButton extends LitElement {
     render() {
         // language=html
         return html`
-            <yp-font type="${this.size === 'medium' ? 'regular' : 'small'}">
-                <slot></slot>
-            </yp-font>
+            <a class="btn" href="${ifDefined(this.href)}">
+                <yp-font type="${this.size === 'medium' ? 'regular' : 'small'}">
+                    <slot></slot>
+                </yp-font>
+            </a>
         `;
     }
 
@@ -87,6 +96,10 @@ export class YpButton extends LitElement {
             },
             disabled: {
                 type: Boolean,
+                reflect: true,
+            },
+            href: {
+                type: String,
                 reflect: true,
             },
         };

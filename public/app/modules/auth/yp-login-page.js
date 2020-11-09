@@ -52,7 +52,7 @@ export class YpLoginPage extends LitElement {
                            @onchange="${this._onPasswordChange}"></yp-text-field>
             
             <div class="actions">
-                <yp-button type="link" class="register">
+                <yp-button type="link" class="register" href="/auth/register">
                    Register
                 </yp-button>
                 <yp-button type="contained" @click="${this._submit}">Sign in</yp-button>

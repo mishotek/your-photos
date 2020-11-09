@@ -1,7 +1,7 @@
 import {LitElement, css, html} from 'lit-element';
 import './components/yp-image-column';
 import './yp-login-page';
-// import './yp-register-view';
+import './yp-register-page';
 import {Router} from '@vaadin/router/dist/vaadin-router';
 
 export class YpAuthPage extends LitElement {
@@ -126,6 +126,10 @@ export class YpAuthPage extends LitElement {
             {
                 path: '/auth',
                 component: 'yp-login-page',
+            },
+            {
+                path: '/auth/register',
+                component: 'yp-register-page',
             },
         ]);
     }
