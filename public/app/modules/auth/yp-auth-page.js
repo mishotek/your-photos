@@ -1,8 +1,8 @@
 import {LitElement, css, html} from 'lit-element';
 import './components/yp-image-column';
+import '../../router/lit-router';
 import './yp-login-page';
 import './yp-register-page';
-import {Router} from '@vaadin/router/dist/vaadin-router';
 
 export class YpAuthPage extends LitElement {
     static get is() {
@@ -91,7 +91,14 @@ export class YpAuthPage extends LitElement {
             
             <div class="content">
                 <div class="login-form">
-                    <div id="router-outlet"></div>
+                    <lit-router>
+                        <lit-route path="/auth">
+                            <yp-login-page></yp-login-page>
+                        </lit-route>
+                        <lit-route path="/auth/register">
+                            <yp-register-page></yp-register-page>
+                        </lit-route>
+                    </lit-router>
                 </div>
             </div>
         `;
@@ -105,7 +112,6 @@ export class YpAuthPage extends LitElement {
 
     firstUpdated(_changedProperties) {
         super.firstUpdated(_changedProperties);
-        this._setUpRouter();
     }
 
     static get properties() {
@@ -117,21 +123,6 @@ export class YpAuthPage extends LitElement {
                 type: Array,
             },
         };
-    }
-
-    _setUpRouter() {
-        const outlet = this.shadowRoot.getElementById('router-outlet');
-        const router = new Router(outlet);
-        router.setRoutes([
-            {
-                path: '/auth',
-                component: 'yp-login-page',
-            },
-            {
-                path: '/auth/register',
-                component: 'yp-register-page',
-            },
-        ]);
     }
 
     get _imageName() {
