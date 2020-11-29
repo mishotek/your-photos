@@ -1,6 +1,5 @@
 import {LitElement, html} from 'lit-element';
-import './modules/auth/yp-auth-page';
-import './router/lit-router';
+import 'lit-elem-router';
 
 export class YpApp extends LitElement {
     static get is() {
@@ -14,7 +13,7 @@ export class YpApp extends LitElement {
                 <lit-route path="/">
                     root
                 </lit-route>
-                <lit-route path="/auth">
+                <lit-route path="/:auth" @activate="${this._loadAuthModule}">
                     <yp-auth-page></yp-auth-page>
                 </lit-route>
             </lit-router>
@@ -35,6 +34,10 @@ export class YpApp extends LitElement {
         if (!hasHash) {
             window.location.href = '/#/';
         }
+    }
+
+    _loadAuthModule() {
+        import('./modules/auth/yp-auth-page');
     }
 }
 

@@ -1,6 +1,6 @@
 import {LitElement, css, html} from 'lit-element';
 import './components/yp-image-column';
-import '../../router/lit-router';
+import 'lit-elem-router';
 import './yp-login-page';
 import './yp-register-page';
 
@@ -110,6 +110,11 @@ export class YpAuthPage extends LitElement {
         this._rows = [1, 2, 3, 4, 5, 6, 7, 8];
     }
 
+
+    updated(changedProperties) {
+        console.log(changedProperties);
+    }
+
     firstUpdated(_changedProperties) {
         super.firstUpdated(_changedProperties);
     }
@@ -121,6 +126,15 @@ export class YpAuthPage extends LitElement {
             },
             _rows: {
                 type: Array,
+            },
+            routePath: {
+                type: Object,
+            },
+            routeParams: {
+                type: Object,
+            },
+            routeQueryParams: {
+                type: Object,
             },
         };
     }
