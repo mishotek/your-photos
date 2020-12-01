@@ -110,15 +110,6 @@ export class YpAuthPage extends LitElement {
         this._rows = [1, 2, 3, 4, 5, 6, 7, 8];
     }
 
-
-    updated(changedProperties) {
-        console.log(changedProperties);
-    }
-
-    firstUpdated(_changedProperties) {
-        super.firstUpdated(_changedProperties);
-    }
-
     static get properties() {
         return {
             _columns: {

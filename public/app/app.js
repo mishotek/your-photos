@@ -1,5 +1,7 @@
 import {LitElement, html} from 'lit-element';
 import 'lit-elem-router';
+import {AuthService} from './modules/auth/auth.service';
+import {AuthStorage} from './modules/auth/auth.storage';
 
 export class YpApp extends LitElement {
     static get is() {
@@ -23,6 +25,7 @@ export class YpApp extends LitElement {
     constructor() {
         super();
         this._goToHash();
+        this._subscribeToLogout();
     }
 
     firstUpdated(_changedProperties) {
@@ -38,6 +41,18 @@ export class YpApp extends LitElement {
 
     _loadAuthModule() {
         import('./modules/auth/yp-auth-page');
+    }
+
+    _subscribeToLogout() {
+        const authService = AuthService.instance;
+        authService.onLogout(() => {
+            window.location.href = '/#/auth';
+        });
+
+        const shouldLogOut = !AuthStorage.getAccessToken();
+        if (shouldLogOut) {
+            authService.logout();
+        }
     }
 }
 

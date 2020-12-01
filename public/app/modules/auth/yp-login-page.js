@@ -4,6 +4,7 @@ import '../../common/form-elements/yp-text-field';
 import '../../common/ui-elements/yp-font';
 import {DataService} from '../../utils/data.service';
 import {AUTH_LOGIN} from '../../utils/XHR';
+import {AuthService} from "./auth.service";
 
 export class YpLoginPage extends LitElement {
     static get is() {
@@ -47,12 +48,13 @@ export class YpLoginPage extends LitElement {
                            ?error="${this._error}"
                            @onchange="${this._onUsernameChange}"></yp-text-field>
             <yp-text-field label="Password"
+                           type="password"
                            message="${this._error ? 'Wrong username or password' : ''}"
                            ?error="${this._error}"
                            @onchange="${this._onPasswordChange}"></yp-text-field>
             
             <div class="actions">
-                <yp-button type="link" class="register" href="/auth/register">
+                <yp-button type="link" class="register" href="/#/auth/register">
                    Register
                 </yp-button>
                 <yp-button type="contained" @click="${this._submit}">Sign in</yp-button>
@@ -72,6 +74,11 @@ export class YpLoginPage extends LitElement {
                 type: Boolean,
             },
         };
+    }
+
+    constructor() {
+        super();
+        this._authService = AuthService.instance;
     }
 
     _onUsernameChange(event) {
@@ -97,7 +104,8 @@ export class YpLoginPage extends LitElement {
     }
 
     _authenticate(data) {
-        console.log(data);
+        this._authService.login(data.accessToken, data.user);
+        window.location.href = '/#/';
     }
 }
 
