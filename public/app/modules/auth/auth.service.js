@@ -30,4 +30,8 @@ class AuthServiceSingleton {
         AuthStorage.removeUser();
         this._logoutListener.emit();
     }
+
+    get isLoggedIn() {
+        return !!AuthStorage.getAccessToken();
+    }
 }

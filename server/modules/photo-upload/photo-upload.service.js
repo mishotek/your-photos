@@ -7,7 +7,8 @@ const {v4: uuidv4} = require('uuid');
 
 exports.upload = async (req, res) => {
     try {
-        const photos = req.files && req.files['photos'];
+        const photos = (req.files && Object.values(req.files));
+
         if (!Array.isArray(photos)) {
             return send(res, httpCodes.BadRequest, null,
                 {message: 'No image files were received'});
@@ -17,7 +18,10 @@ exports.upload = async (req, res) => {
             await _storePhoto(req.user, photo);
         }
 
-        send(res, httpCodes.Created, null, null, 'Photos uploaded');
+        // TODO remove timeout
+        setTimeout(() => {
+            send(res, httpCodes.Created, null, null, 'Photos uploaded');
+        }, 3000);
     } catch (e) {
         Logger.logError(e);
         send(res, httpCodes.InternalServerError);

@@ -22,10 +22,12 @@ export class YpFont extends LitElement {
             }
 
             :host([type=title-3]) {
+                font-weight: 600;
                 font-size: var(--font-size-title-3);
             }
 
             :host([type=large]) {
+                font-weight: 600;
                 font-size: var(--font-size-large);
             }
 
@@ -47,6 +49,10 @@ export class YpFont extends LitElement {
 
             :host([font-family=Staatliches]) {
                 font-family: 'Staatliches', cursive;
+            }
+            
+            :host([bold]) {
+                font-weight: bold;
             }
         `;
     }
@@ -75,6 +81,10 @@ export class YpFont extends LitElement {
                 type: String,
                 reflect: true,
                 attribute: 'font-family',
+            },
+            bold: {
+                type: Boolean,
+                reflect: true,
             },
         };
     }

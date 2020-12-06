@@ -2,6 +2,7 @@ import {LitElement, html} from 'lit-element';
 import 'lit-elem-router';
 import {AuthService} from './modules/auth/auth.service';
 import {AuthStorage} from './modules/auth/auth.storage';
+import {Router} from 'lit-elem-router/public/router';
 
 export class YpApp extends LitElement {
     static get is() {
@@ -12,11 +13,13 @@ export class YpApp extends LitElement {
         // language=html
         return html`
             <lit-router>
-                <lit-route path="/">
-                    root
+                <lit-route path="/"
+                           tag-name="yp-home-page"
+                           @activate="${this._loadHomeModule}">
                 </lit-route>
-                <lit-route path="/:auth" @activate="${this._loadAuthModule}">
-                    <yp-auth-page></yp-auth-page>
+                <lit-route path="/:auth"
+                           tag-name="yp-auth-page"
+                           @activate="${this._loadAuthModule}">
                 </lit-route>
             </lit-router>
         `;
@@ -24,7 +27,6 @@ export class YpApp extends LitElement {
 
     constructor() {
         super();
-        this._goToHash();
         this._subscribeToLogout();
     }
 
@@ -32,21 +34,18 @@ export class YpApp extends LitElement {
         super.firstUpdated(_changedProperties);
     }
 
-    _goToHash() {
-        const hasHash = !!window.location.hash;
-        if (!hasHash) {
-            window.location.href = '/#/';
-        }
-    }
-
     _loadAuthModule() {
         import('./modules/auth/yp-auth-page');
+    }
+
+    _loadHomeModule() {
+        import('./modules/home/yp-home-page');
     }
 
     _subscribeToLogout() {
         const authService = AuthService.instance;
         authService.onLogout(() => {
-            window.location.href = '/#/auth';
+            Router.navigate('/auth');
         });
 
         const shouldLogOut = !AuthStorage.getAccessToken();

@@ -3,6 +3,8 @@ import './components/yp-image-column';
 import 'lit-elem-router';
 import './yp-login-page';
 import './yp-register-page';
+import {AuthService} from './auth.service';
+import {Router} from 'lit-elem-router/public/router';
 
 export class YpAuthPage extends LitElement {
     static get is() {
@@ -92,11 +94,9 @@ export class YpAuthPage extends LitElement {
             <div class="content">
                 <div class="login-form">
                     <lit-router>
-                        <lit-route path="/auth">
-                            <yp-login-page></yp-login-page>
+                        <lit-route path="${this.routePath}" tag-name="yp-login-page">
                         </lit-route>
-                        <lit-route path="/auth/register">
-                            <yp-register-page></yp-register-page>
+                        <lit-route path="${this.routePath}/register" tag-name="yp-register-page">
                         </lit-route>
                     </lit-router>
                 </div>
@@ -106,8 +106,17 @@ export class YpAuthPage extends LitElement {
 
     constructor() {
         super();
+
         this._columns = [1, 2, 3, 4, 5, 6, 7, 8];
         this._rows = [1, 2, 3, 4, 5, 6, 7, 8];
+    }
+
+    firstUpdated(_changedProperties) {
+        super.firstUpdated(_changedProperties);
+
+        if (AuthService.instance.isLoggedIn) {
+            return Router.navigate('/');
+        }
     }
 
     static get properties() {
@@ -119,13 +128,7 @@ export class YpAuthPage extends LitElement {
                 type: Array,
             },
             routePath: {
-                type: Object,
-            },
-            routeParams: {
-                type: Object,
-            },
-            routeQueryParams: {
-                type: Object,
+                type: String,
             },
         };
     }

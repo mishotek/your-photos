@@ -1,5 +1,6 @@
 import {LitElement, css, html} from 'lit-element';
 import '../ui-elements/yp-font';
+import('../../library/lib-icon/lib-icon');
 import {ifDefined} from 'lit-html/directives/if-defined';
 
 export class YpButton extends LitElement {
@@ -62,11 +63,29 @@ export class YpButton extends LitElement {
 
             :host([type=text]) .btn {
                 color: var(--color-secondary);
+                background: var(--color-black-0);
+                padding: 0 var(--space-tiny);
+                font-weight: bold;
+            }
+
+            :host([type=text]:hover) .btn {
+                color: var(--color-secondary);
+                background: var(--color-black-10);
+            }
+
+            :host([type=text]:active) .btn {
+                color: var(--color-secondary);
+                background: var(--color-black-20);
             }
             
             :host([disabled]) .btn {
                 opacity: 0.3;
                 cursor: default;
+            }
+            
+            .icon {
+                --size: var(--space-small);
+                margin-right: var(--space-micro);
             }
         `;
     }
@@ -75,6 +94,11 @@ export class YpButton extends LitElement {
         // language=html
         return html`
             <a class="btn" href="${ifDefined(this.href)}">
+                
+                ${this.icon ? html`
+                    <lib-icon class="icon" icon="${this.icon}"></lib-icon>
+                ` : ''}
+                
                 <yp-font type="${this.size === 'medium' ? 'regular' : 'small'}">
                     <slot></slot>
                 </yp-font>
@@ -99,6 +123,10 @@ export class YpButton extends LitElement {
                 reflect: true,
             },
             href: {
+                type: String,
+                reflect: true,
+            },
+            icon: {
                 type: String,
                 reflect: true,
             },
