@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const app = express();
 const path = require('path');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
@@ -19,6 +20,11 @@ mongoose.connect(MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+// Enabling CORS on dev environment
+if (process.env.NODE_ENV !== 'production') {
+    app.use(cors());
+}
 
 app.use(fileUpload({}));
 app.use(bodyParser.urlencoded({extended: false}));

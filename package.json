@@ -4,7 +4,9 @@
   "description": "Google photos, but on your own disk",
   "main": "server/index.js",
   "scripts": {
-    "dev": "nodemon server/index.js",
+    "dev:serve-front": "es-dev-server --app-index index.html --node-resolve --watch --open --cors",
+    "dev:serve-server": "nodemon server/index.js",
+    "dev": "concurrently \"npm run dev:serve-server\" \"npm run dev:serve-front\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,15 +22,19 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
+    "lit-elem-router": "1.2.2",
     "lit-element": "^2.4.0",
     "mongoose": "^5.10.8",
     "uuid": "^8.3.1"
   },
   "devDependencies": {
+    "es-dev-server": "^1.57.8",
     "eslint": "^7.10.0",
     "eslint-config-google": "^0.14.0",
     "nodemon": "^2.0.4"
