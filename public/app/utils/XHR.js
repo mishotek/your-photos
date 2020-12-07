@@ -6,3 +6,4 @@ export const AUTH_LOGIN = '/auth/login';
 export const AUTH_REGISTER = '/auth/register';
 
 export const PHOTO_UPLOAD = '/photo/upload';
+export const UPLOADED_PHOTOS = '/photo/uploaded-photos';

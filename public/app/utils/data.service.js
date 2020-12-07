@@ -15,4 +15,17 @@ export class DataService {
         });
         return {value: await response.json(), status: response.status};
     }
+
+    static async get(url, headers = {}) {
+        const fullUrl = `${API_ROOT}${url}`;
+        const response = await fetch(fullUrl, {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Access-Token': AuthStorage.getAccessToken(),
+                ...headers,
+            },
+        });
+        return {value: await response.json(), status: response.status};
+    }
 }

@@ -1,5 +1,5 @@
 import {DataService} from '../../utils/data.service';
-import {PHOTO_UPLOAD} from '../../utils/XHR';
+import {PHOTO_UPLOAD, UPLOADED_PHOTOS} from '../../utils/XHR';
 
 export class PhotoDataService {
     static upload(photos) {
@@ -10,5 +10,9 @@ export class PhotoDataService {
         });
 
         return DataService.post(PHOTO_UPLOAD, formData);
+    }
+
+    static getUploadedPhotos() {
+        return DataService.get(UPLOADED_PHOTOS);
     }
 }

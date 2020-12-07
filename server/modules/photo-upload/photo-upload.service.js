@@ -37,7 +37,7 @@ const _storePhoto = async (user, photo) => {
         accessibleTo: [user._id],
         fileName: storedFileName,
         name: photo.name,
-        url: `${process.env.DOMAIN}/public/photos/${storedFileName}`,
+        url: `${process.env.FRONT_DOMAIN}/public/photos/${storedFileName}`,
     });
     await photoModel.save();
 };

@@ -76,6 +76,8 @@ export class YpHeader extends LitElement {
                             Photos
                         </yp-font>
                     </a>
+                    <a href="/auth">login</a>
+                    <a href="/auth/register">register</a>
                 </div>
                 <div class="right align-center">
                     <div class="upload__wrapper">
@@ -91,16 +93,32 @@ export class YpHeader extends LitElement {
             
             <yp-uploading-notification
                 id="progress"
-                img-url="http://localhost:8000/public/photos/7c69199f-0d43-442a-af11-8605ab370c52-97f3cd3c9e100390b337b730e52c82f0.jpg"
-                img-count="12"></yp-uploading-notification>
+                img-url="${this._previewImg}"
+                img-count="${this._photoCount}"></yp-uploading-notification>
         `;
     }
 
+    static get properties() {
+        return {
+            _photoCount: {
+                type: Number,
+            },
+            _previewImg: {
+                type: String,
+            },
+        };
+    }
+
     async _onFileSelection(event) {
+        const files = event.target.files;
+        if (files.length === 0) return;
+
+        this._photoCount = files.length;
+        this._previewImg = URL.createObjectURL(files[0]);
         this._progress.show();
 
         try {
-            await PhotoDataService.upload(event.target.files);
+            await PhotoDataService.upload(files);
             this._progress.showSuccess();
         } catch (e) {
             console.error(e);

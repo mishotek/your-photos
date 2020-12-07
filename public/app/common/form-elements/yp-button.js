@@ -38,17 +38,17 @@ export class YpButton extends LitElement {
             
             :host([type=contained]) .btn {
                 color: var(--color-white-80);
-                background-color: var(--color-secondary);
+                background-color: var(--color-primary-80);
                 padding: 0 var(--space-base);
             }
 
             :host([type=contained]):hover .btn {
-                background-color: var(--color-secondary-dark);
+                background-color: var(--color-primary-60);
             }
 
             :host([type=outlined]) .btn {
-                color: var(--color-secondary);
-                border: solid 1px var(--color-secondary);
+                color: var(--color-primary-80);
+                border: solid 1px var(--color-primary-80);
                 background-color: transparent;
                 padding: 0 var(--space-base);
             }
@@ -62,19 +62,19 @@ export class YpButton extends LitElement {
             }
 
             :host([type=text]) .btn {
-                color: var(--color-secondary);
+                color: var(--color-primary-80);
                 background: var(--color-black-0);
                 padding: 0 var(--space-tiny);
                 font-weight: bold;
             }
 
             :host([type=text]:hover) .btn {
-                color: var(--color-secondary);
+                color: var(--color-primary-80);
                 background: var(--color-black-10);
             }
 
             :host([type=text]:active) .btn {
-                color: var(--color-secondary);
+                color: var(--color-primary-80);
                 background: var(--color-black-20);
             }
             

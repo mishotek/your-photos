@@ -90,10 +90,10 @@ export class YpLoginPage extends LitElement {
     }
 
     async _submit() {
-        const {value, status} = await DataService.post(AUTH_LOGIN, {
+        const {value, status} = await DataService.post(AUTH_LOGIN, JSON.stringify({
             username: this._username,
             password: this._password,
-        });
+        }), {'Content-Type': 'application/json'});
 
         if (status === 200) {
             this._error = false;

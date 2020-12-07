@@ -1,7 +1,7 @@
 import {LitElement, html, css} from 'lit-element';
 import {DataService} from '../../utils/data.service';
 import {AUTH_LOGIN, AUTH_REGISTER} from '../../utils/XHR';
-import {AuthService} from "./auth.service";
+import {AuthService} from './auth.service';
 
 export class YpRegisterPage extends LitElement {
     static get is() {
@@ -90,10 +90,10 @@ export class YpRegisterPage extends LitElement {
     }
 
     async _submit() {
-        const {value, status} = await DataService.post(AUTH_REGISTER, {
+        const {value, status} = await DataService.post(AUTH_REGISTER, JSON.stringify({
             username: this._username,
             password: this._password,
-        });
+        }), {'Content-Type': 'application/json'});
 
         if (status === 200) {
             this._error = false;
@@ -105,7 +105,9 @@ export class YpRegisterPage extends LitElement {
     }
 
     async _login(username, password) {
-        const {value, status} = await DataService.post(AUTH_LOGIN, {username, password});
+        const {value, status} = await DataService.post(AUTH_LOGIN, JSON.stringify({
+            username, password,
+        }), {'Content-Type': 'application/json'});
 
         if (status === 200) {
             this._error = false;

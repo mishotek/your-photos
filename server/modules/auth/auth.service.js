@@ -14,7 +14,7 @@ const UserModel = require('../../db-models/user.model');
 exports.register = async (req, res) => {
     try {
         const {username, password} = req.body;
-
+        console.log(req.body);
         const error = await _validateCredentials(username, password);
         if (error) {
             return send(res, httpCodes.BadRequest, null, error);

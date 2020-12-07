@@ -43,7 +43,7 @@ export class YpTextField extends LitElement {
 
             .inner-input:focus {
                 outline: none;
-                border: solid 1px var(--color-secondary);
+                border: solid 1px var(--color-black-80);
             }
             
             .label {
@@ -69,32 +69,32 @@ export class YpTextField extends LitElement {
             
             :host([active]) .label {
                 transform: translateY(-26px);
-                color: var(--color-secondary);
+                color: var(--color-black-80);
                 font-size: var(--font-size-small);
             }
             
             :host([error]) .inner-input {
-                border: solid 1px var(--color-error);
+                border: solid 1px var(--color-error-80);
             }
 
             :host([error]) .message {
-                color: var(--color-error);
+                color: var(--color-error-80);
             }
             
             :host([error][active]) .label {
-                color: var(--color-error);
+                color: var(--color-error-80);
             }
 
             :host([success]) .inner-input {
-                border: solid 1px var(--color-success);
+                border: solid 1px var(--color-success-80);
             }
 
             :host([success]) .message {
-                color: var(--color-success);
+                color: var(--color-success-80);
             }
             
             :host([success][active]) .label {
-                color: var(--color-success);
+                color: var(--color-success-80);
             }
         `;
     }

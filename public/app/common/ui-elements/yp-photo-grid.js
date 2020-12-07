@@ -12,7 +12,9 @@ export class YpPhotoGrid extends LitElement {
 
     render() {
         // language=html
-        return html``;
+        return this.images.map((img) => html`
+            <img src="${img.url}" alt="">
+        `);
     }
 
     static get properties() {
