@@ -90,6 +90,7 @@ body, html {
 }
 
 .spacing {
+    --space-x-micro: 2px;
     --space-micro:   4px;
     --space-tiny:    8px;
     --space-x-small: 12px;
