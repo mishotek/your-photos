@@ -1,5 +1,5 @@
 import {DataService} from '../../utils/data.service';
-import {PHOTO_UPLOAD, UPLOADED_PHOTOS} from '../../utils/XHR';
+import {PHOTO_DELETE, PHOTO_UPLOAD, UPLOADED_PHOTOS} from '../../utils/XHR';
 
 export class PhotoDataService {
     static upload(photos) {
@@ -10,6 +10,10 @@ export class PhotoDataService {
         });
 
         return DataService.post(PHOTO_UPLOAD, formData);
+    }
+
+    static delete(ids) {
+        return DataService.post(PHOTO_DELETE, JSON.stringify({ids}));
     }
 
     static getUploadedPhotos() {

@@ -17,6 +17,7 @@ export class LibNotificationPopup extends LitElement {
                 
                 will-change: transform, opacity;
                 transition: transform 0.5s ease-in-out, opacity 0.3s linear;
+                z-index: 1;
             }
             
             :host([active]) {

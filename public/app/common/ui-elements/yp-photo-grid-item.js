@@ -77,6 +77,7 @@ export class YpPhotoGridItem extends LitElement {
         return html`
             <lib-checkbox
                     class="checkbox"
+                    ?value="${this.selected}"
                     @value-change="${this.toggle}"></lib-checkbox>
             <img class="img" src="${this.image.url}" alt="">
         `;

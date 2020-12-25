@@ -53,8 +53,8 @@ export class LibCheckbox extends LitElement {
                 content: "";
                 background: var(--color-white-80);
                 position: absolute;
-                height: 18px;
-                width: 18px;
+                height: 16px;
+                width: 16px;
                 border-radius: 4px;
             }
         `;

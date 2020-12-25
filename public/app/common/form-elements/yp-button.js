@@ -77,6 +77,29 @@ export class YpButton extends LitElement {
                 color: var(--color-primary-80);
                 background: var(--color-black-20);
             }
+
+            :host([type=icon]) .btn {
+                background: var(--color-black-0);
+                height: var(--space-large);
+                width: var(--space-large);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: var(--radius-circle);
+            }
+
+            :host([type=icon]) .icon {
+                margin: 0;
+                --size: var(--space-base);
+            }
+            
+            :host([type=icon]:hover) .btn {
+                background: var(--color-black-10);
+            }
+
+            :host([type=icon]:active) .btn {
+                background: var(--color-black-20);
+            }
             
             :host([disabled]) .btn {
                 opacity: 0.3;
@@ -108,7 +131,7 @@ export class YpButton extends LitElement {
 
     static get properties() {
         return {
-            // Types: text outlined contained
+            // Types: text outlined contained icon
             type: {
                 type: String,
                 reflect: true,

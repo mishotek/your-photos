@@ -7,3 +7,4 @@ export const AUTH_REGISTER = '/auth/register';
 
 export const PHOTO_UPLOAD = '/photo/upload';
 export const UPLOADED_PHOTOS = '/photo/uploaded-photos';
+export const PHOTO_DELETE = '/photo/uploaded-photos/delete';

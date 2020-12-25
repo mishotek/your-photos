@@ -22,7 +22,7 @@ export class LibIcon extends LitElement {
 
     render() {
         // language=html
-        return html`${unsafeSVG(this._iconStr)}`;
+        return this._iconStr ? html`${unsafeSVG(this._iconStr)}` : '';
     }
 
     static get properties() {

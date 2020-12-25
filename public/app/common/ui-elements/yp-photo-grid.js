@@ -38,6 +38,7 @@ export class YpPhotoGrid extends LitElement {
         return this.images.map((img) => html`
             <div class="img__wrapper">
                 <yp-photo-grid-item
+                        @selection-change="${this._selectionChanged}"
                         class="img"
                         .image="${img}">
                 </yp-photo-grid-item>
@@ -50,12 +51,40 @@ export class YpPhotoGrid extends LitElement {
             images: {
                 type: Array,
             },
+            _selected: {
+                type: Set,
+            },
         };
     }
 
     constructor() {
         super();
         this.images = [];
+        this._selected = new Set();
+    }
+
+    unselect() {
+        for (const node of this._selected) {
+            node.selected = false;
+        }
+        this._selected = new Set();
+        this._notifySelectionChange();
+    }
+
+    _selectionChanged(event) {
+        if (event.detail.selected) {
+            this._selected.add(event.target);
+        } else {
+            this._selected.delete(event.target);
+        }
+
+        this._notifySelectionChange();
+    }
+
+    _notifySelectionChange() {
+        this.dispatchEvent(new CustomEvent('select', {detail: {
+            selected: this._selected,
+        }}));
     }
 }
 
