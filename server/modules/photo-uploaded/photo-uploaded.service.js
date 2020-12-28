@@ -9,7 +9,9 @@ exports.getUploadedPhotos = async (req, res) => {
     try {
         const user = req.user;
         const photoModels = await PhotoModel.find({ownerId: user._id}).exec();
-        const photos = photoModels.map(Utils.extractPublicPhotoData);
+        const photos = photoModels
+            .sort((a, b) => b.createdAt - a.createdAt)
+            .map(Utils.extractPublicPhotoData);
         send(res, httpCodes.OK, photos);
     } catch (e) {
         Logger.logError(e);
@@ -49,7 +51,7 @@ exports.deleteUploadedPhotos = async (req, res) => {
         for (const photoModel of req.photoModels) {
             await _removePhoto(photoModel);
         }
-        send(res, httpCodes.OK, null, null, 'Photos were removed');
+        send(res, httpCodes.OK, {}, null, 'Photos were removed');
     } catch (e) {
         Logger.logError(e);
         send(res, httpCodes.InternalServerError);

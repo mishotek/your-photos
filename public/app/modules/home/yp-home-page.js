@@ -12,7 +12,7 @@ export class YpHomePage extends LitElement {
     render() {
         // language=html
         return html`
-            <yp-header></yp-header>
+            <yp-header @uploaded="${this._getImages}"></yp-header>
             <yp-photo-actions-header
                     ?visible="${this._selectedImages.size > 0}"
                     selected-count="${this._selectedImages.size}"
@@ -21,12 +21,10 @@ export class YpHomePage extends LitElement {
                     @add="${this._onAdd}"
                     @download="${this._onDownload}">
             </yp-photo-actions-header>
-            <div>
-                <yp-photo-grid
-                        id="grid"
-                        .images="${this._images}"
-                        @select="${this._onSelectionChange}"></yp-photo-grid>
-            </div>
+            <yp-photo-grid
+                    id="grid"
+                    .images="${this._images}"
+                    @select="${this._onSelectionChange}"></yp-photo-grid>
         `;
     }
 
@@ -61,10 +59,12 @@ export class YpHomePage extends LitElement {
     }
 
     _onDelete() {
-        const ids = Array.from(this._selectedImages)
-            .map((imgNode) => imgNode.image.id);
+        const ids = Array.from(this._selectedImages).map((image) => image.id);
         PhotoDataService.delete(ids)
-            .then(console.log)
+            .then(() => {
+                this._onUnselect();
+                this._removeDeletedPhotos(ids);
+            })
             .catch(console.error);
     }
 
@@ -74,6 +74,11 @@ export class YpHomePage extends LitElement {
 
     _onDownload() {
 
+    }
+
+    _removeDeletedPhotos(idsToRemove) {
+        this._images = this._images
+            .filter((img) => !idsToRemove.includes(img.id));
     }
 
     get _gridNode() {

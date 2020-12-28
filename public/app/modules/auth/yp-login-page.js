@@ -4,7 +4,8 @@ import '../../common/form-elements/yp-text-field';
 import '../../common/ui-elements/yp-font';
 import {DataService} from '../../utils/data.service';
 import {AUTH_LOGIN} from '../../utils/XHR';
-import {AuthService} from "./auth.service";
+import {AuthService} from './auth.service';
+import {Router} from 'lit-elem-router/public/router';
 
 export class YpLoginPage extends LitElement {
     static get is() {
@@ -105,7 +106,7 @@ export class YpLoginPage extends LitElement {
 
     _authenticate(data) {
         this._authService.login(data.accessToken, data.user);
-        window.location.href = '/#/';
+        Router.navigate('/');
     }
 }
 

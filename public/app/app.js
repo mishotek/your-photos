@@ -55,4 +55,4 @@ export class YpApp extends LitElement {
     }
 }
 
-window.customElements.define(YpApp.is, YpApp);
+customElements.define(YpApp.is, YpApp);

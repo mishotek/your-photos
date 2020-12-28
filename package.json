@@ -4,7 +4,7 @@
   "description": "Google photos, but on your own disk",
   "main": "server/index.js",
   "scripts": {
-    "dev:serve-front": "es-dev-server --app-index index.html --node-resolve --watch --open --cors",
+    "dev:serve-front": "es-dev-server --app-index index.html --node-resolve --open --cors",
     "dev:serve-server": "nodemon server/index.js",
     "dev": "concurrently \"npm run dev:serve-server\" \"npm run dev:serve-front\"",
     "test": "echo \"Error: no test specified\" && exit 1"

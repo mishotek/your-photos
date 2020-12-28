@@ -64,7 +64,7 @@ export class YpPhotoGrid extends LitElement {
     }
 
     unselect() {
-        for (const node of this._selected) {
+        for (const node of this.shadowRoot.querySelectorAll('.img')) {
             node.selected = false;
         }
         this._selected = new Set();
@@ -72,10 +72,11 @@ export class YpPhotoGrid extends LitElement {
     }
 
     _selectionChanged(event) {
-        if (event.detail.selected) {
-            this._selected.add(event.target);
+        const {selected, image} = event.detail;
+        if (selected) {
+            this._selected.add(image);
         } else {
-            this._selected.delete(event.target);
+            this._selected.delete(image);
         }
 
         this._notifySelectionChange();

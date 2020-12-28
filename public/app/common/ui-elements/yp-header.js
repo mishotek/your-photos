@@ -120,6 +120,7 @@ export class YpHeader extends LitElement {
         try {
             await PhotoDataService.upload(files);
             this._progress.showSuccess();
+            this.dispatchEvent(new CustomEvent('uploaded'));
         } catch (e) {
             console.error(e);
             this._progress.showError();

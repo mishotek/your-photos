@@ -13,7 +13,9 @@ export class PhotoDataService {
     }
 
     static delete(ids) {
-        return DataService.post(PHOTO_DELETE, JSON.stringify({ids}));
+        return DataService
+            .post(PHOTO_DELETE, JSON.stringify({ids}),
+                {'Content-Type': 'application/json'});
     }
 
     static getUploadedPhotos() {
